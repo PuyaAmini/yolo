@@ -1,0 +1,20 @@
+{
+       "trips":[
+              {
+                     "title":"sword",
+                     "price":"220$"
+              },
+              {
+                     "title":"cloth",
+                     "price":"230$"
+              },
+              {
+                     "title":"arrow",
+                     "price":"3$"
+              },
+              {
+                     "title":"bow",
+                     "price":"70$"
+              }
+       ]
+}
