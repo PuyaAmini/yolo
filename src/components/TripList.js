@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './TripList.css'
 
 export default function TripList() {
        const [trips , setTrip] = useState([])
        const [url , setUrl] = useState('http://localhost:3000/trips')
 
-       useEffect(() => {
-              fetch(url).
-              then(response => response.json()).
-              then(trip => setTrip(trip))
+       const fetchTrips = useCallback(async() => {
+              const response = await fetch(url);
+              const json = await response.json()
+              setTrip(json)
        }, [url])
+
+       useEffect(() => {
+              fetchTrips()
+       }, [fetchTrips])
   return (
     <div className='trip-list'>
-       
+
        <div className='filters'>
               <button onClick={() => setUrl('http://localhost:3000/trips?loc=usa')}>USA</button>
               <button onClick={() => setUrl('http://localhost:3000/trips?loc=spain')}>Spain</button>
