@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useFetch } from '../hooks/useFetch'
+import { useFetch  } from '../hooks/useFetch'
 import './TripList.css'
 
 export default function TripList() {
        const [url , setUrl] = useState('http://localhost:3000/trips')
-       const {data : trips } = useFetch(url)
+       const {data : trips , isPending } = useFetch(url)
        
 
   return (
@@ -16,6 +16,7 @@ export default function TripList() {
               <button onClick={() => setUrl('http://localhost:3000/trips')}>All</button>
        </div>
        <ul >
+              {isPending && <p>is loading...</p>}
               <h2>trip List</h2>
               {trips && trips.map(trip =>(
                      <li key={trip.id}>
