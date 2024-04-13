@@ -2,19 +2,23 @@
        "trips":[
               {
                      "title":"sword",
-                     "price":"220$"
+                     "price":"220$",
+                     "id": "1"
               },
               {
-                     "title":"cloth",
-                     "price":"230$"
+                     "title":"elixir",
+                     "price":"230$",
+                     "id": "2"
               },
               {
                      "title":"arrow",
-                     "price":"3$"
+                     "price":"3$",
+                     "id": "3"
               },
               {
                      "title":"bow",
-                     "price":"70$"
+                     "price":"70$",
+                     "id": "4"
               }
        ]
 }
