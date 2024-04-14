@@ -1,9 +1,12 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
-export const useFetch = (url) => {
+export const useFetch = (url , _options) => {
        const [data, setData] = useState(null) // داده‌های دریافتی
        const [isPending, setIsPending] = useState(false) // وضعیت در حال بارگیری
        const [error, setError] = useState(null) // خطاها
+       // use useRef to wrap an object/array argument
+       //which is a useEffect dependency
+       const options = useRef(_options).current
 
        const fetchData = useCallback(async () => {
               setIsPending(true) // در حال بارگیری
@@ -11,6 +14,7 @@ export const useFetch = (url) => {
               try {
                      const response = await fetch(url , {signal: controller.signal}); // ارسال درخواست به سرور
                      console.log(response)
+                     
                      if (!response.ok){
                             throw new Error(response.statusText) // اگر پاسخ ناموفق بود، خطا را پرتاب کن
                      }
@@ -32,7 +36,7 @@ export const useFetch = (url) => {
               return () => {
                      controller.abort()
               }
-       }, [url])
+       }, [url , options])
 
        useEffect(() => {
               fetchData() // فراخوانی تابع بارگیری داده
