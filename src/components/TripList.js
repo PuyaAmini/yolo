@@ -4,7 +4,7 @@ import './TripList.css'
 
 export default function TripList() {
        const [url , setUrl] = useState('http://localhost:3000/trips')
-       const {data : trips , isPending } = useFetch(url)
+       const {data : trips , isPending , error} = useFetch(url)
        
 
   return (
@@ -14,11 +14,13 @@ export default function TripList() {
               <button onClick={() => setUrl('http://localhost:3000/trips?loc=usa')}>USA</button>
               <button onClick={() => setUrl('http://localhost:3000/trips?loc=spain')}>Spain</button>
               <button onClick={() => setUrl('http://localhost:3000/trips')}>All</button>
+              <button onClick={() => setUrl('http://localhost:3000/trips****ERROR')}>check Error</button>
        </div>
        <ul >
               {isPending && <p>is loading...</p>}
+              {error && <h4 className='error'>{error}</h4>}
               <h2>trip List</h2>
-              {trips && trips.map(trip =>(
+              {!error && trips && trips.map(trip =>(
                      <li key={trip.id}>
                             <h3>{trip.title}</h3>
                             <p>{trip.price}</p>
