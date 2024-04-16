@@ -12,7 +12,8 @@ export const useFetch = (url , _options) => {
               setIsPending(true) // در حال بارگیری
               const controller = new AbortController() // ایجاد کنترل‌کننده برای متوقف کردن درخواست
               try {
-                     const response = await fetch(url , {signal: controller.signal}); // ارسال درخواست به سرور
+                     //   ارسال درخواست به سرور و تعیین نقطه کنترل
+                     const response = await fetch(url , {signal: controller.signal});
                      console.log(response)
                      
                      if (!response.ok){
@@ -22,7 +23,7 @@ export const useFetch = (url , _options) => {
                      
                      setData(json) // ذخیره داده‌های دریافتی
                      setIsPending(false) // پایان بارگیری
-                     setError(null) // حذف خطا
+                     setError(null) // برای دفعات بعدی:  حذف خطا
               } catch (err) {
                      if(err.name === "AbortError"){
                             console.log('the fetch was aborted...') // اگر درخواست متوقف شد
@@ -32,10 +33,12 @@ export const useFetch = (url , _options) => {
                             console.log(err.message) // نمایش پیغام خطا
                      }
               }
+
               // تابع پاک‌سازی: در صورت حذف کامپوننت React از DOM، درخواست fetch متوقف می‌شود
               return () => {
                      controller.abort()
               }
+              
        }, [url , options])
 
        useEffect(() => {
