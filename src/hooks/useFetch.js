@@ -1,11 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-export default function useFetch(url) {
+export default function useFetch(url , _options) {
        const [data , setData] = useState(null)
        const [isPending , setIsPending ] = useState(false)
        const [error , setError] = useState(null)
 
+       const options = useRef(_options)
+
        const fetchData = useCallback(async() => {
+              console.log(options)
               setIsPending(true) 
               const controller = new AbortController()
               try{
@@ -29,7 +32,7 @@ export default function useFetch(url) {
                             console.log(err.message)
                      }
               }
-       } , [url])
+       } , [url , options])
        useEffect(() => {
               fetchData()
        } , [fetchData])
