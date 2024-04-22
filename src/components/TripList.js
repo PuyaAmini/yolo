@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./TripList.css";
 import useFetch from '../hooks/useFetch';export default function TripList() {
   const [url, setUrl] = useState("http://localhost:3000/trips");
-  const { data: trips } = useFetch(url);
+  const { data: trips, isPending } = useFetch(url);
 
   return (
     <div>
@@ -21,6 +21,7 @@ import useFetch from '../hooks/useFetch';export default function TripList() {
             All
           </button>
         </div>
+        {isPending && <p>Loading ...</p>}
         {/* list */}
         {trips &&
           trips.map((trip) => (
