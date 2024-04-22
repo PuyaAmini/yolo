@@ -15,16 +15,16 @@
   list-style-type: none;
   margin: 20px 0;
 }
-.trip-list .filters{
-       display: flex;
-       gap: 10px;
+.trip-list .filters {
+  display: flex;
+  gap: 10px;
 }
 .trip-list button {
-       padding: 10px;       
-       font-size: 16px;
-       flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  flex-grow: 1;
 }
-.error{
+.error {
   color: red;
   font-weight: bold;
 }

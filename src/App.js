@@ -4,12 +4,14 @@ import TripList from './components/TripList';
 
 
 function App() {
-  const [show , setShow] = useState(true)
+  const [show, setShow] = useState(true)
 
   return (
     <div className="App">
-      <button onClick={() => setShow(false)}>Hide</button>
-      {show && <TripList/>}
+      {show && <button onClick={() => setShow(false)}>Hide</button>}
+      {!show && <button onClick={() => setShow(true)}>Show</button>}
+      
+      {show && <TripList />}
     </div>
   );
 }
